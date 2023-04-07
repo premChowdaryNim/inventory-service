@@ -10,6 +10,7 @@ import com.prem.inventoryservice.model.Inventory;
 import com.prem.inventoryservice.repository.InventoryRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -19,7 +20,11 @@ public class InventoryService {
 
 	private final InventoryRepository inventoryRepository;
 
+	@SneakyThrows
 	public List<InventoryResponse> isInStock(List<String> skuCode) {
+		/*
+		 * log.info("Wait Started"); Thread.sleep(10000); log.info("Wait Ended");
+		 */
 	        log.info("Checking Inventory");
 	        return inventoryRepository.findAllBySkuCodeIn(skuCode).stream()
 	                .map(inventory ->

@@ -17,10 +17,12 @@ import com.prem.inventoryservice.dto.InventoryResponse;
 import com.prem.inventoryservice.service.InventoryService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/inventory")
 @RequiredArgsConstructor
+@Slf4j
 public class InventoryController {
 
     private final InventoryService inventoryService;
@@ -36,13 +38,16 @@ public class InventoryController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InventoryResponse>  isInStock(@RequestParam List<String> skuCode) {
+    	log.info("Entered Inventory Service");
         return inventoryService.isInStock(skuCode);
     }
     
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String placeOrder(@RequestBody InventoryRequest inventoryRequest) {
+    	log.info("Entered Inventory Service");
     	inventoryService.inventoryStock(inventoryRequest);
+    	log.info("Exited Inventory Service");
         return "Inventory Updated Successfully";
     }
 }

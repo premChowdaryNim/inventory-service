@@ -3,10 +3,11 @@ package com.prem.inventoryservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-//@OpenAPIDefinition(info = @Info(title = "Inventory Service API", version = "1.0", description = "Inventory Information"))
+@ComponentScan({"com.*"})
 public class InventoryServiceApplication {
 
 	public static void main(String[] args) {
